@@ -1,0 +1,25 @@
+name: Release Notification
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify stakeholders
+        uses: mailgun/mailgun-github-action@v1
+        with:
+          api-key: ${{ secrets.MAILGUN_API_KEY }}
+          domain: ${{ secrets.MAILGUN_DOMAIN }}
+          from: ${{ vars.SENDER_EMAIL }}
+          to: ${{ vars.STAKEHOLDERS_EMAIL }}
+          subject: "New release: ${{ github.event.release.tag_name }}"
+          html: |
+            <h3>New Release Published</h3>
+            <p><strong>Version:</strong> ${{ github.event.release.tag_name }}</p>
+            <p><strong>Released by:</strong> ${{ github.actor }}</p>
+            <p><strong>Release notes:</strong></p>
+            <p>${{ github.event.release.body }}</p>
+            <p><a href="${{ github.event.release.html_url }}">View on GitHub</a></p>
