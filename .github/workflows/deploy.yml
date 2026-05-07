@@ -43,7 +43,7 @@ jobs:
           domain: ${{ secrets.MAILGUN_DOMAIN }}
           from: ${{ vars.SENDER_EMAIL }}
           to: ${{ vars.ONCALL_EMAIL }}
-          subject: "Production deployment failed"
+          subject: "Production deployment failed on ${{ github.ref_name }} by ${{ github.actor }}"
           body: |
             <h3>Deployment Failed</h3>
             <p><strong>Repo:</strong> ${{ github.repository }}</p>
