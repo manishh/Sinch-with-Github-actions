@@ -1,3 +1,6 @@
+# This workflow simulates a production deployment and sends an email notification to the on-call engineer if the deployment fails 
+# (simulated with `exit 1`). It uses the same Mailgun action for consistency with other workflows.
+
 name: Deploy to Production
 
 on:
