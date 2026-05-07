@@ -12,14 +12,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Notify PM on PR merge
-        uses: mailgun/mailgun-github-action@v1
+        uses: vineetchoudhary/mailgun-action@master
         with:
           api-key: ${{ secrets.MAILGUN_API_KEY }}
           domain: ${{ secrets.MAILGUN_DOMAIN }}
           from: ${{ vars.SENDER_EMAIL }}
           to: ${{ vars.PM_EMAIL }}
           subject: "PR merged: ${{ github.event.pull_request.title }}"
-          html: |
+          body: |
             <h3>Pull Request Merged</h3>
             <p><strong>PR:</strong> ${{ github.event.pull_request.title }}</p>
             <p><strong>Author:</strong> ${{ github.event.pull_request.user.login }}</p>

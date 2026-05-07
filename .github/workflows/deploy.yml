@@ -31,14 +31,14 @@ jobs:
 
       - name: Notify on-call engineer on failure
         if: failure()
-        uses: mailgun/mailgun-github-action@v1
+        uses: vineetchoudhary/mailgun-action@master
         with:
           api-key: ${{ secrets.MAILGUN_API_KEY }}
           domain: ${{ secrets.MAILGUN_DOMAIN }}
           from: ${{ vars.SENDER_EMAIL }}
           to: ${{ vars.ONCALL_EMAIL }}
           subject: "Production deployment failed"
-          html: |
+          body: |
             <h3>Deployment Failed</h3>
             <p><strong>Repo:</strong> ${{ github.repository }}</p>
             <p><strong>Branch:</strong> ${{ github.ref_name }}</p>

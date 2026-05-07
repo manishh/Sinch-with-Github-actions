@@ -9,14 +9,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Notify stakeholders
-        uses: mailgun/mailgun-github-action@v1
+        uses: vineetchoudhary/mailgun-action@master
         with:
           api-key: ${{ secrets.MAILGUN_API_KEY }}
           domain: ${{ secrets.MAILGUN_DOMAIN }}
           from: ${{ vars.SENDER_EMAIL }}
           to: ${{ vars.STAKEHOLDERS_EMAIL }}
           subject: "New release: ${{ github.event.release.tag_name }}"
-          html: |
+          body: |
             <h3>New Release Published</h3>
             <p><strong>Version:</strong> ${{ github.event.release.tag_name }}</p>
             <p><strong>Released by:</strong> ${{ github.actor }}</p>
