@@ -1,3 +1,6 @@
+# This workflow sends an email notification to the PM when a PR is merged into master. 
+#It uses the same Mailgun action for consistency with other workflows.
+
 name: PR Merge Notification
 
 on:
