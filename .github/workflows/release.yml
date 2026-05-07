@@ -1,3 +1,6 @@
+# This workflow sends an email notification to stakeholders when a new release is published.
+# It uses the same Mailgun action for consistency with other workflows.
+
 name: Release Notification
 
 on:
