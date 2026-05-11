@@ -15,7 +15,7 @@ The app itself is intentionally simple: a two-endpoint Flask API that serves as 
 
 **1. Production deployment failure alert (`deploy.yml`)**
 
-Triggers on every push to `main`. Runs the test suite, then simulates a deployment step that fails. When the failure is detected, GitHub Actions immediately sends an HTML email to the on-call engineer with the repo name, branch, commit SHA, the person who triggered the run, and a direct link to
+Triggers on every push to `master` (the `main` branch). Runs the test suite, then simulates a deployment step that fails. When the failure is detected, GitHub Actions immediately sends an HTML email to the on-call engineer with the repo name, branch, commit SHA, the person who triggered the run, and a direct link to
 the failed Actions run.
 
 **2. Release summary email (`release.yml`)**
@@ -24,7 +24,7 @@ Triggers when a GitHub Release is published. Sends a formatted email to stakehol
 
 **3. PR merge notification (`pr_merge.yml`)**  
 
-Triggers when a pull request is closed against `main`, but only fires if the PR was actually merged (not just closed). Sends a ping to the PM with the PR
+Triggers when a pull request is closed against `master`, but only fires if the PR was actually merged (not just closed). Sends a ping to the PM with the PR
 title, the author, who merged it, and a link to the PR.
 
 ---
@@ -91,9 +91,9 @@ Using variables (rather than hardcoding emails in the workflow files) allows you
 
 | Workflow | How to trigger |
 |---|---|
-| `deploy.yml` | Push any commit to `main` |
+| `deploy.yml` | Push any commit to `master` |
 | `release.yml` | Publish a new GitHub Release |
-| `pr_merge.yml` | Merge a pull request into `main` |
+| `pr_merge.yml` | Merge a pull request into `master` |
 
 > **Note:** The deploy workflow uses `exit 1` to intentionally simulate a
 > deployment failure. This is what triggers the on-call alert. Remove or
